@@ -1,23 +1,29 @@
 /* src/styles/navbar.scss */
 
 .NavigationContainer {
-    position: fixed;
-    left: 0;
-    top: 0;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    // height: 100vh;
+    // width: 80px;
+    // background-color: #ffffff;
+    // box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    // display: flex;
+    // flex-direction: column;
+    // z-index: 1000;
+    // padding: 2px;
+    width: 200px; /* or whatever width */
+    background: #fff;
     height: 100vh;
-    width: 80px;
-    background-color: #ffffff;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
+    position: relative;
+
   }
   
   .PrimaryNav {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 70px;
+    width: 65px;
     padding: 0.8rem; 
     background-color: #f8f9fb !important;
     border-bottom-left-radius: 12px;
@@ -32,7 +38,7 @@
     margin-bottom: 2rem;
     margin-top: 8px;
     img {
-      width: 72px;
+      width: 65px;
       object-fit: contain;
       overflow-clip-margin: content-box;
         overflow: clip;
@@ -48,22 +54,34 @@
     margin-top: 15px;
     .MenuItem {
       display: flex;
+      padding: 6px;
       flex-direction: column;
       align-items: center;
+      gap: 4px;
+      border-radius: 4px;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
       cursor: pointer;
-      color: #0a8394;
+      // color: #0a8394;
       transition: all 0.2s ease;
   
       svg {
-        width: 28px;
-        height: 28px;
-        fill: #0a8394;
+        width: 24px;
+        height: 24px;
+        fill: #a3a6b7;
       }
   
       p {
+        color: var(--Neutral-600, #A3A6B7);
+        font-family: "Noto Sans";
+        // font-size: 10px;
+        // font-style: normal;
+        // font-weight: 500;
+        // line-height: normal;
         margin-top: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: 0.8rem;
+        font-weight: 400;
         text-align: center;
       }
   
@@ -74,7 +92,7 @@
         }
   
         p {
-          color: #065f66;
+          color: #a3a6b7;
         }
       }
     }
