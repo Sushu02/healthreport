@@ -1,25 +1,122 @@
-// src/styles/header.scss
+// // styles/header.scss
 
-.header-container {
+// .Header {
+//   height: 60px;
+//   background-color: #ffffff;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 0 1.5rem;
+//   border-bottom: 1px solid #e2e8f0;
+// }
+
+// .HeaderLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: 1rem;
+// }
+
+// .DownloadBtn {
+//   background-color: #2563eb;
+//   color: white;
+//   padding: 0.5rem 1rem;
+//   border-radius: 6px;
+//   border: none;
+//   cursor: pointer;
+//   font-size: 0.9rem;
+//   &:hover {
+//     background-color: #1d4ed8;
+//   }
+// }
+
+// .PortalDropdown {
+//   padding: 0.5rem;
+//   font-size: 0.9rem;
+//   border-radius: 4px;
+//   border: 1px solid #cbd5e1;
+// }
+
+
+
+// .navbar {
 //   display: flex;
 //   justify-content: space-between;
 //   align-items: center;
-//   padding: 15px 20px;
-//   background-color: #f5f7fa;
-//   border-bottom: 1px solid #ccc;
+//   padding: 1rem;
+//   background: #fff;
+//   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
-  height: 60px;
-  background: #f5f5f5;
-  padding: 10px 20px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-}
+//   .left {
+//     display: flex;
+//     align-items: center;
+//     gap: 1rem;
 
-.header-title {
-  font-size: 20px;
-  font-weight: bold;
-}
+//     h2 {
+//       margin: 0;
+//     }
 
-.header-dropdown {
-  padding: 8px;
-  font-size: 14px;
+//     button {
+//       padding: 0.5rem 1rem;
+//       background: #007bff;
+//       color: white;
+//       border: none;
+//       border-radius: 4px;
+//       cursor: pointer;
+//     }
+
+//     select {
+//       padding: 0.5rem;
+//     }
+//   }
+
+//   .right {
+//     font-weight: bold;
+//   }
+// }
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: 'Inter', sans-serif;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      color: #222;
+    }
+
+    .portal-dropdown {
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+
+    .download-button {
+      padding: 6px 14px;
+      background-color: #1e88e5;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+
+  .right {
+    font-size: 14px;
+    color: #666;
+  }
 }

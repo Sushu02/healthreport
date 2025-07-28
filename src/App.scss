@@ -1,0 +1,29 @@
+.app-layout {
+  display: flex;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+// src/styles/aggrid.scss
+.ag-theme-alpine {
+  --ag-header-background-color: #f4f6f9;
+  --ag-odd-row-background-color: #fafafa;
+  --ag-font-size: 14px;
+  --ag-font-family: 'Inter', sans-serif;
+  --ag-border-color: #e0e0e0;
+
+  .ag-header-cell {
+    font-weight: 600;
+    cursor: move; // shows drag cursor
+  }
+
+  .ag-row-hover {
+    background-color: #f0f0f0 !important;
+  }
+}

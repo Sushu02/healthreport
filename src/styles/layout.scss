@@ -1,0 +1,40 @@
+// styles/layout.scss
+
+.AppLayout {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f7f9fc;
+}
+
+.Sidebar {
+  width: 250px;
+  background-color: #1e293b; // dark sidebar
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.Logo {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #60a5fa; // blue
+}
+
+.NavItem {
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: #334155;
+  }
+  &.active {
+    background-color: #2563eb;
+    font-weight: 600;
+  }
+}
