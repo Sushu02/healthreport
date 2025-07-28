@@ -93,6 +93,7 @@
 from fastapi import FastAPI
 from routes.health_report import router as health_report_router
 from fastapi.middleware.cors import CORSMiddleware
+from routes.health_report import router as health_report_router
 
 app = FastAPI()
 

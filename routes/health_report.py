@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query
-from mongo_service import get_invoice_health_data, get_report_health_data
+from services.mongo_service import get_invoice_health_data, get_report_health_data
 
 router = APIRouter()
 
@@ -10,10 +10,10 @@ def invoice_health_summary(portal: str = Query(None)):
     success = len([d for d in data if d.get("status") == "Success"])
     failed = len([d for d in data if d.get("status") == "Failed"])
     return {
-        "total": total,
-        "success": success,
-        "failed": failed,
-        "success_rate": round((success / total) * 100, 2) if total else 0,
+        # "total": total,
+        # "success": success,
+        # "failed": failed,
+        # "success_rate": round((success / total) * 100, 2) if total else 0,
         "data": data
     }
 
@@ -24,9 +24,9 @@ def report_health_summary(portal: str = Query(None)):
     success = len([d for d in data if d.get("status") == "Success"])
     failed = len([d for d in data if d.get("status") == "Failed"])
     return {
-        "total": total,
-        "success": success,
-        "failed": failed,
-        "success_rate": round((success / total) * 100, 2) if total else 0,
+        # "total": total,
+        # "success": success,
+        # "failed": failed,
+        # "success_rate": round((success / total) * 100, 2) if total else 0,
         "data": data
     }
