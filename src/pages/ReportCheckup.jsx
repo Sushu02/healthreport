@@ -27,8 +27,10 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import 'ag-grid-enterprise/styles/ag-grid.css';
+import 'ag-grid-enterprise/styles/ag-theme-quartz.css';
+import 'ag-grid-enterprise';
+
 
 const PAGE_SIZE = 100;
 

@@ -25,7 +25,9 @@
 
 // src/components/HeaderContainer.jsx
 import React from "react";
-import { useLocation } from "react-router-dom";
+
+// import { useLocation } from "react-router-dom";
+
 import "../styles/header.scss";
 
 const HeaderContainer = ({

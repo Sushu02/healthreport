@@ -60,8 +60,8 @@ import Dashboard from "./pages/Dashboard";
 import InvoiceCheckup from "./pages/InvoiceCheckup";
 import ReportCheckup from "./pages/ReportCheckup";
 import Credentials from "./pages/Credentials";
+import Trends from "./pages/Trends"; // Adjust the path if it's inside `components`
 import "../src/App.scss";
-
 
 const App = () => {
   return (
@@ -75,7 +75,7 @@ const App = () => {
             <Route path="/invoice-checkup" element={<InvoiceCheckup />} />
             <Route path="/report-checkup" element={<ReportCheckup />} />
             <Route path="/credentials" element={<Credentials/>}/>
-            
+            <Route path="/trends" element={<Trends />} />
             {/* Add others similarly */}
           </Routes>
         </div>
