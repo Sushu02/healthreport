@@ -57,7 +57,7 @@ import { AgCharts } from "ag-charts-react";
 
 const Trends = () => {
   const [data, setData] = useState([]);
-  const [hoveredPortal, setHoveredPortal] = useState(null);
+  // const [hoveredPortal, setHoveredPortal] = useState(null);
 
   useEffect(() => {
     const apiUrl = "http://localhost:8000/weekly-trends";
@@ -107,7 +107,7 @@ const Trends = () => {
   };
 
   const series = portals.map(portal => {
-    const isActive = hoveredPortal === null || hoveredPortal === portal;
+    // const isActive = hoveredPortal === null || hoveredPortal === portal;
     const filteredData = data.filter(d => d.portalName === portal);
     console.log(`Data series for portal ${portal}:`, filteredData);
 
