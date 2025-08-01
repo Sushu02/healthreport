@@ -63,3 +63,9 @@ def get_unique_portals():
     coll1 = db[MONGO_COLLECTION_NAME_1].distinct("portalName")
     coll2 = db[MONGO_COLLECTION_NAME_2].distinct("portalName")
     return sorted(set(coll1 + coll2))
+
+
+def get_weekly_summary_data():
+    collection = db['invoice_weekly_summary']
+    data = list(collection.find({}, {"_id": 0}))
+    return data

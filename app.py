@@ -90,10 +90,37 @@
 
 
 
+# from fastapi import FastAPI
+# from routes.health_report import router as health_report_router
+# from fastapi.middleware.cors import CORSMiddleware
+# from routes.health_report import router as health_report_router
+# from weekly_trends import router as weekly_trends_router
+
+# app = FastAPI()
+
+# # Optional: CORS
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Change this in prod
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# # Health routes
+# app.include_router(health_report_router, prefix="/api/health", tags=["Health Report"])
+
+# app.include_router(weekly_trends_router)
+
+# @app.get("/")
+# def read_root():
+#     return {"message": "Invoice Health Checkup API Running"}
+
+
 from fastapi import FastAPI
-from routes.health_report import router as health_report_router
 from fastapi.middleware.cors import CORSMiddleware
 from routes.health_report import router as health_report_router
+# from routes.weekly_trends import router as weekly_trends_router  # ✅ Use routes. if it's in routes/
 
 app = FastAPI()
 
@@ -106,9 +133,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Health routes
+# Include routers
+app.include_router(health_report_router)
 app.include_router(health_report_router, prefix="/api/health", tags=["Health Report"])
+# app.include_router(weekly_trends_router, prefix="/api/trends", tags=["Weekly Trends"])  # ✅ Added prefix
 
 @app.get("/")
 def read_root():
     return {"message": "Invoice Health Checkup API Running"}
+
