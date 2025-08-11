@@ -47,25 +47,80 @@ connection_string = (f"mongodb://{mongo_db_username}:{mongo_db_password}"
 client = MongoClient(connection_string)
 db = client['gstservice']
 
+# def get_invoice_health_data(portal=None):
+#     query = {}
+#     if portal and portal.lower() != 'all':
+#         query = {"portalName": portal}
+#     return list(db[MONGO_COLLECTION_NAME_1].find(query, {"_id": 0}))
+
+
+PORTAL_MAP = {
+    "mmt": "MakeMyTrip",
+    "makemytrip": "MakeMyTrip",
+    "make my trip": "MakeMyTrip",
+    "myyatra": "Yatra",
+    "pyt": "Pickyourtrail",
+    "pickyourtrail": "Pickyourtrail",
+}
+
 def get_invoice_health_data(portal=None):
     query = {}
-    if portal and portal.lower() != 'all':
-        query = {"portalName": portal}
+    if portal and portal.lower() != 'all data':
+        normalized_portal = PORTAL_MAP.get(portal.lower(), portal)
+        query = {"portalName": {"$regex": f"^{normalized_portal}$", "$options": "i"}}
     return list(db[MONGO_COLLECTION_NAME_1].find(query, {"_id": 0}))
+
 
 def get_report_health_data(portal=None):
     query = {}
-    if portal and portal.lower() != 'all':
-        query = {"portalName": portal}
+    if portal and portal.lower() != 'all data':
+        normalized_portal = PORTAL_MAP.get(portal.lower(), portal)
+        query = {"portalName": {"$regex": f"^{normalized_portal}$", "$options": "i"}}
     return list(db[MONGO_COLLECTION_NAME_2].find(query, {"_id": 0}))
 
-def get_unique_portals():
-    coll1 = db[MONGO_COLLECTION_NAME_1].distinct("portalName")
-    coll2 = db[MONGO_COLLECTION_NAME_2].distinct("portalName")
-    return sorted(set(coll1 + coll2))
+# def get_unique_portals():
+#     coll1 = db[MONGO_COLLECTION_NAME_1].distinct("portalName")
+#     coll2 = db[MONGO_COLLECTION_NAME_2].distinct("portalName")
+#     return sorted(set(coll1 + coll2))
 
 
 def get_weekly_summary_data():
     collection = db['invoice_weekly_summary']
     data = list(collection.find({}, {"_id": 0}))
     return data
+
+def get_unique_portals():
+    # Portal alias mapping (all keys in lowercase)
+    alias_map = {
+        "mmt": "MakeMyTrip",
+        "makemytrip": "MakeMyTrip",
+        "make my trip": "MakeMyTrip",
+        "myyatra": "Yatra",
+        "PYT":"Pickyourtrail",
+        "Pyt":"Pickyourtrail",
+        "pyt": "Pickyourtrail",
+        "pickyourtrail": "Pickyourtrail"
+    }
+
+    coll1 = db[MONGO_COLLECTION_NAME_1].distinct("portalName")
+    coll2 = db[MONGO_COLLECTION_NAME_2].distinct("portalName")
+
+    cleaned_portals = set()
+
+    for p in (coll1 + coll2):
+        if not p or not isinstance(p, str) or not p.strip():
+            continue  # skip None/empty
+
+        p_clean = p.strip().lower()  # normalize for matching
+
+        # Apply alias mapping
+        if p_clean in alias_map:
+            cleaned_portals.add(alias_map[p_clean])
+        else:
+            # Keep original name but unify case for known portals
+            cleaned_portals.add(p.strip().title())
+
+    return sorted(cleaned_portals)
+
+
+
