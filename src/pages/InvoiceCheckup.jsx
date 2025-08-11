@@ -1,226 +1,5 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { AgGridReact } from "ag-grid-react";
-// import "ag-grid-community/styles/ag-grid.css";
-// import "ag-grid-community/styles/ag-theme-alpine.css";
-// import { ModuleRegistry } from "ag-grid-community";
-// import { ClientSideRowModelModule } from "ag-grid-community";
-
-// ModuleRegistry.registerModules([ClientSideRowModelModule]);
-
-// const InvoiceCheckup = () => {
-//   const [rowData, setRowData] = useState([]);
-//   const [columnDefs, setColumnDefs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get("/api/health/invoice");
-//         console.log("Invoice API response:", response.data);
-//         const responseData = response.data.data || [];
-//         setRowData(responseData);
-
-//         if (responseData.length > 0) {
-//           const dynamicCols = Object.keys(responseData[0]).map(key => ({
-//             headerName: key.replace(/_/g, ' ').toUpperCase(),
-//             field: key,
-//             sortable: true,
-//             filter: true,
-//           }));
-//           setColumnDefs(dynamicCols);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching invoice data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="ag-theme-alpine" style={{ height: "80vh", width: "100%" }}>
-//       {loading ? (
-//         <p>Loading Invoice Checkup data...</p>
-//       ) : (
-//         <AgGridReact
-//           rowData={rowData}
-//           columnDefs={columnDefs}
-//           modules={[ClientSideRowModelModule]}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default InvoiceCheckup;
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { AgGridReact } from "ag-grid-react";
-// import { ModuleRegistry, ClientSideRowModelModule } from 'ag-grid-enterprise';
-// import 'ag-grid-enterprise/styles/ag-grid.css';
-// import 'ag-grid-enterprise/styles/ag-theme-quartz.css';
-// import 'ag-grid-enterprise';
-// import "../styles/aggrid.scss";
-
-// ModuleRegistry.registerModules([
-//   ClientSideRowModelModule
-// ]);
-
-// const InvoiceCheckup = () => {
-//   const [rowData, setRowData] = useState([]);
-//   const [columnDefs, setColumnDefs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get("/api/health/invoice");
-//         console.log("Invoice API response:", response.data);
-//         const responseData = response.data.data || [];
-//         setRowData(responseData);
-
-//         if (responseData.length > 0) {
-//           const dynamicCols = Object.keys(responseData[0]).map(key => ({
-//             headerName: key.replace(/_/g, ' ').toUpperCase(),
-//             field: key,
-//             sortable: true,
-//             filter: true,
-//           }));
-//           setColumnDefs(dynamicCols);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching invoice data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="ag-theme-quartz grid-wrapper" style={{ height: "100vh", width: "100%" }}>
-//       {loading ? (
-//         <p>Loading Invoice Checkup data...</p>
-//       ) : (
-//         <AgGridReact
-//           rowData={rowData}
-//           columnDefs={columnDefs}
-//           modules={[ClientSideRowModelModule]}
-//           pagination={true}
-//           paginationPageSize={100} // Show 100 rows per page
-//           defaultColDef={{
-//             sortable: true,
-//             filter: true,
-//             resizable: true,
-//             suppressMovable: false,
-//           }}
-//           animateRows={true}
-//           rowSelection="multiple"
-//           enableRangeSelection={true}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default InvoiceCheckup;
-
-
-// WORKING PERFECTLY
-
-// import React, { useEffect, useState, useRef } from "react";
-// import axios from "axios";
-// import { AgGridReact } from "ag-grid-react";
-// import { ModuleRegistry } from 'ag-grid-enterprise';
-// import { ClientSideRowModelModule } from 'ag-grid-community';
-// import { LicenseManager } from "ag-grid-enterprise";
-// import 'ag-grid-enterprise/styles/ag-grid.css';
-// import 'ag-grid-enterprise/styles/ag-theme-quartz.css';
-// import 'ag-grid-enterprise';
-// import "../styles/aggrid.scss";
-
-// LicenseManager.setLicenseKey(
-//   "Using_this_{AG_Charts_and_AG_Grid}_Enterprise_key_{AG-064524}_in_excess_of_the_licence_granted_is_not_permitted___Please_report_misuse_to_legal@ag-grid.com___For_help_with_changing_this_key_please_contact_info@ag-grid.com___{Finkraft}_is_granted_a_{Single_Application}_Developer_License_for_the_application_{finkraft}_only_for_{1}_Front-End_JavaScript_developer___All_Front-End_JavaScript_developers_working_on_{finkraft}_need_to_be_licensed___{finkraft}_has_not_been_granted_a_Deployment_License_Add-on___This_key_works_with_{AG_Charts_and_AG_Grid}_Enterprise_versions_released_before_{5_August_2025}____[v3]_[0102]_MTc1NDM0ODQwMDAwMA==f6fa016c1d5a2cae512ac9e9a68e6239"
-// );
-
-// // Register AG Grid modules
-// ModuleRegistry.registerModules([ClientSideRowModelModule]);
-
-// const InvoiceCheckup = () => {
-//   const [tableData, setTableData] = useState([]);
-//   const [columnDefs, setColumnDefs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const gridRef = useRef(null); // Ref to the AG Grid instance
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get("/api/health/invoice");
-//         console.log("Invoice API response:", response.data);
-//         const responseData = response.data.data || [];
-//         setTableData(responseData);
-
-//         if (responseData.length > 0) {
-//           const dynamicCols = Object.keys(responseData[0]).map(key => ({
-//             headerName: key.replace(/_/g, ' ').toUpperCase(),
-//             field: key,
-//             sortable: true,
-//             filter: true,
-//           }));
-//           setColumnDefs(dynamicCols);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching invoice data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="report-container">
-//       <div className="ag-theme-quartz grid-wrapper" style={{ height: "100vh", width: "100%" }}>
-//         {loading ? (
-//           <p>Loading Invoice Checkup data...</p>
-//         ) : (
-//           <AgGridReact
-//             ref={gridRef}
-//             rowData={tableData}
-//             columnDefs={columnDefs}
-//             modules={[ClientSideRowModelModule]}
-//             pagination={true}
-//             paginationPageSize={100}
-//             defaultColDef={{
-//               sortable: true,
-//               filter: true,
-//               resizable: true,
-//               suppressMovable: false,
-//             }}
-//             animateRows={true}
-//             rowSelection="multiple"
-//             enableRangeSelection={true}
-//           />
-//         )}
-//       </div>
-//     </div>  
-//   );
-// };
-
-// export default InvoiceCheckup;
-
-
-
-
 'use client';
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { AgGridReact } from "ag-grid-react";
 import { LicenseManager } from "ag-grid-enterprise";
@@ -230,10 +9,10 @@ import {
   RowGroupingModule,
   ExcelExportModule,
 } from 'ag-grid-enterprise';
-
 import 'ag-grid-enterprise/styles/ag-grid.css';
 import 'ag-grid-enterprise/styles/ag-theme-quartz.css';
 import "../styles/aggrid.scss";
+import HeaderContainer from "../components/HeaderContainer";
 
 LicenseManager.setLicenseKey(
     "Using_this_{AG_Charts_and_AG_Grid}_Enterprise_key_{AG-064524}_in_excess_of_the_licence_granted_is_not_permitted___Please_report_misuse_to_legal@ag-grid.com___For_help_with_changing_this_key_please_contact_info@ag-grid.com___{Finkraft}_is_granted_a_{Single_Application}_Developer_License_for_the_application_{finkraft}_only_for_{1}_Front-End_JavaScript_developer___All_Front-End_JavaScript_developers_working_on_{finkraft}_need_to_be_licensed___{finkraft}_has_not_been_granted_a_Deployment_License_Add-on___This_key_works_with_{AG_Charts_and_AG_Grid}_Enterprise_versions_released_before_{5_August_2025}____[v3]_[0102]_MTc1NDM0ODQwMDAwMA==f6fa016c1d5a2cae512ac9e9a68e6239"
@@ -247,106 +26,384 @@ ModuleRegistry.registerModules([
   ExcelExportModule,
 ]);
 
+// const InvoiceCheckup = () => {
+//   const gridRef = useRef(null);
+//   const [columnDefs, setColumnDefs] = useState([]);
+//   const [rowData, setRowData] = useState([]);
+
+//   useEffect(() => {
+//     const getNumericValue = (fieldName) => (params) => {
+//       const match = String(params.data[fieldName] || '').match(/\d+/);
+//       return match ? parseInt(match[0], 10) : null;
+//     };
+  
+//     const cols = [
+//       { headerName: "Workspace", field: "workspaceName" },
+//       { headerName: "Portal", field: "portalName" },
+//       { headerName: "Invoice Date", field: "invoice_initialization_date_time" },
+//       { headerName: "Test Status Count", field: "TestStausAsPerInvCount" },
+//       { headerName: "Test Status Time", field: "TestStausAsPerInvTime" },
+//       { headerName: "File Diff", field: "fileDifference" },
+//       {
+//         headerName: "Backend Flag",
+//         field: "invoiceReceivedBackendFlag",
+//         cellRenderer: (params) => {
+//           const value = params.value;
+//           if (value === true) {
+//             return (
+//               <div className="checkbox-green">
+//                 <input
+//                   type="checkbox"
+//                   disabled
+//                   checked
+//                   style={{ cursor: 'default' }}
+//                 />
+//               </div>
+//             );
+//           } else if (value === false) {
+//             return (
+//               <input
+//                 type="checkbox"
+//                 disabled
+//                 style={{ cursor: 'default' }}
+//               />
+//             );
+//           } else if (value === '' || value === null || value === undefined || value === '--') {
+//             return <span>--</span>;
+//           } else {
+//             return <span>{String(value)}</span>; // fallback
+//           }
+//         }
+//       },
+//       {
+//         headerName: "UI Flag",
+//         field: "invoiceDownloadUIFlag",
+//         cellRenderer: (params) => {
+//           const value = params.value;
+//           if (value === true) {
+//             return (
+//               <div className="checkbox-green">
+//                 <input
+//                   type="checkbox"
+//                   disabled
+//                   checked
+//                   style={{ cursor: 'default' }}
+//                 />
+//               </div>
+//             );
+//           } else if (value === false) {
+//             return (
+//               <input
+//                 type="checkbox"
+//                 disabled
+//                 style={{ cursor: 'default' }}
+//               />
+//             );
+//           } else if (value === '' || value === null || value === undefined || value === '--') {
+//             return <span>--</span>;
+//           } else {
+//             return <span>{String(value)}</span>;
+//           }
+//         }
+//       },        
+  
+//       {
+//         headerName: "Per Download Time DB",
+//         field: "perInvoiceDownloadTimeBasedOnDB",
+//         filter: 'agNumberColumnFilter',
+//         valueGetter: getNumericValue("perInvoiceDownloadTimeBasedOnDB"),
+//         valueFormatter: (params) => params.data?.perInvoiceDownloadTimeBasedOnDB || '',
+//       },
+//       {
+//         headerName: "Per Download Time ZIP",
+//         field: "perInvoiceDownloadTimeBasedOnZip",
+//         filter: 'agNumberColumnFilter',
+//         valueGetter: getNumericValue("perInvoiceDownloadTimeBasedOnZip"),
+//         valueFormatter: (params) => params.data?.perInvoiceDownloadTimeBasedOnZip || '',
+//       },
+//       {
+//         headerName: "Files in DB",
+//         field: "totalFilesInDB",
+//         filter: 'agNumberColumnFilter',
+//         valueGetter: getNumericValue("totalFilesInDB"),
+//         valueFormatter: (params) => params.data?.totalFilesInDB || '',
+//       },
+//       {
+//         headerName: "Files in UI",
+//         field: "totalFilesInUI",
+//         filter: 'agNumberColumnFilter',
+//         valueGetter: getNumericValue("totalFilesInUI"),
+//         valueFormatter: (params) => params.data?.totalFilesInUI || '',
+//       },
+//       {
+//         headerName: "Files in ZIP",
+//         field: "totalFilesInZip",
+//         filter: 'agNumberColumnFilter',
+//         valueGetter: getNumericValue("totalFilesInZip"),
+//         valueFormatter: (params) => params.data?.totalFilesInZip || '',
+//       },
+  
+//       { headerName: "Remark", field: "remark" },
+//     ];
+  
+//     setColumnDefs(cols);
+//   }, []);  
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const response = await axios.get("/api/health/invoice");
+//       console.log("API Response:", response.data); // ✅ check the shape
+//       setRowData(response.data.data || []); // ✅ fix here
+//     } catch (error) {
+//       console.error("Failed to load row data", error);
+//       setRowData([]);
+//     }
+//   };
+//   fetchData();
+// }, []);
+
+
+//   const getRowStyle = (params) => {
+//     return params.node.rowIndex % 2 === 0 ? { background: "#f9f9f9" } : null;
+//   };
+
+
+//   return (
+//     <div className="report-container" style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    
+//       <div style={{ marginBottom: 10 }}>
+//       </div>
+//       <div className="ag-theme-quartz" style={{ flex: 1 }}>
+//       <AgGridReact
+//         ref={gridRef}
+//         columnDefs={columnDefs}
+//         rowData={rowData}
+//         animateRows={true}
+//         defaultColDef={{
+//           flex: 1,
+//           minWidth: 120,
+//           resizable: true,
+//           sortable: true,
+//           filter: true,
+//           enableRowGroup: true,
+//         }}
+//         rowGroupPanelShow="always"
+//         enableRangeSelection={true}
+//         getRowStyle={getRowStyle}
+//         sideBar={{
+//           toolPanels: [
+//             {
+//               id: 'columns',
+//               labelDefault: 'Columns',
+//               labelKey: 'columns',
+//               iconKey: 'columns',
+//               toolPanel: 'agColumnsToolPanel',
+//             },
+//             {
+//               id: 'filters',
+//               labelDefault: 'Filters',
+//               labelKey: 'filters',
+//               iconKey: 'filter',
+//               toolPanel: 'agFiltersToolPanel',
+//             },
+//           ],
+//           defaultToolPanel: '' // 👈 ensures it's not open by default
+//         }}        
+//       />
+
+//       </div>
+//     </div>
+//   );
+// };
+
+
+// export default InvoiceCheckup;
+
+
+
+
 const InvoiceCheckup = () => {
   const gridRef = useRef(null);
   const [columnDefs, setColumnDefs] = useState([]);
+  const [rowData, setRowData] = useState([]);
 
-  useEffect(() => {
-    // Define columns with grouping support
+  // NEW: selected portal state
+  const [selectedPortal, setSelectedPortal] = useState("All data");
+
+  // NEW: handler to update selected portal
+  const onPortalChange = (portal) => {
+    setSelectedPortal(portal);
+  };
+  
+    useEffect(() => {
+    const getNumericValue = (fieldName) => (params) => {
+      const match = String(params.data[fieldName] || '').match(/\d+/);
+      return match ? parseInt(match[0], 10) : null;
+    };
+  
     const cols = [
+      { headerName: "Workspace", field: "workspaceName" },
+      { headerName: "Portal", field: "portalName" },
+      { headerName: "Invoice Date", field: "invoice_initialization_date_time" },
+      { headerName: "Test Status Count", field: "TestStausAsPerInvCount" },
+      { headerName: "Test Status Time", field: "TestStausAsPerInvTime" },
+      { headerName: "File Diff", field: "fileDifference" },
       {
-        headerName: "Make",
-        field: "make",
-        enableRowGroup: true,
-        sortable: true,
-        filter: true,
+        headerName: "Backend Flag",
+        field: "invoiceReceivedBackendFlag",
+        cellRenderer: (params) => {
+          const value = params.value;
+          if (value === true) {
+            return (
+              <div className="checkbox-green">
+                <input
+                  type="checkbox"
+                  disabled
+                  checked
+                  style={{ cursor: 'default' }}
+                />
+              </div>
+            );
+          } else if (value === false) {
+            return (
+              <input
+                type="checkbox"
+                disabled
+                style={{ cursor: 'default' }}
+              />
+            );
+          } else if (value === '' || value === null || value === undefined || value === '--') {
+            return <span>--</span>;
+          } else {
+            return <span>{String(value)}</span>; // fallback
+          }
+        }
       },
       {
-        headerName: "Model",
-        field: "model",
-        enableRowGroup: true,
-        sortable: true,
-        filter: true,
+        headerName: "UI Flag",
+        field: "invoiceDownloadUIFlag",
+        cellRenderer: (params) => {
+          const value = params.value;
+          if (value === true) {
+            return (
+              <div className="checkbox-green">
+                <input
+                  type="checkbox"
+                  disabled
+                  checked
+                  style={{ cursor: 'default' }}
+                />
+              </div>
+            );
+          } else if (value === false) {
+            return (
+              <input
+                type="checkbox"
+                disabled
+                style={{ cursor: 'default' }}
+              />
+            );
+          } else if (value === '' || value === null || value === undefined || value === '--') {
+            return <span>--</span>;
+          } else {
+            return <span>{String(value)}</span>;
+          }
+        }
+      },        
+  
+      {
+        headerName: "Per Download Time DB",
+        field: "perInvoiceDownloadTimeBasedOnDB",
+        filter: 'agNumberColumnFilter',
+        valueGetter: getNumericValue("perInvoiceDownloadTimeBasedOnDB"),
+        valueFormatter: (params) => params.data?.perInvoiceDownloadTimeBasedOnDB || '',
       },
       {
-        headerName: "Price",
-        field: "price",
-        sortable: true,
-        filter: "agNumberColumnFilter",
+        headerName: "Per Download Time ZIP",
+        field: "perInvoiceDownloadTimeBasedOnZip",
+        filter: 'agNumberColumnFilter',
+        valueGetter: getNumericValue("perInvoiceDownloadTimeBasedOnZip"),
+        valueFormatter: (params) => params.data?.perInvoiceDownloadTimeBasedOnZip || '',
       },
+      {
+        headerName: "Files in DB",
+        field: "totalFilesInDB",
+        filter: 'agNumberColumnFilter',
+        valueGetter: getNumericValue("totalFilesInDB"),
+        valueFormatter: (params) => params.data?.totalFilesInDB || '',
+      },
+      {
+        headerName: "Files in UI",
+        field: "totalFilesInUI",
+        filter: 'agNumberColumnFilter',
+        valueGetter: getNumericValue("totalFilesInUI"),
+        valueFormatter: (params) => params.data?.totalFilesInUI || '',
+      },
+      {
+        headerName: "Files in ZIP",
+        field: "totalFilesInZip",
+        filter: 'agNumberColumnFilter',
+        valueGetter: getNumericValue("totalFilesInZip"),
+        valueFormatter: (params) => params.data?.totalFilesInZip || '',
+      },
+  
+      { headerName: "Remark", field: "remark" },
     ];
-
+  
     setColumnDefs(cols);
-  }, []);
+  }, []);  
 
-  // Row styling
-  const getRowStyle = params => {
-    if (params.node.rowIndex % 2 === 0) {
-      return { background: "#f9f9f9" };
-    }
-    return null;
-  };
-
-  // Datasource for server-side model
-  const datasource = {
-    getRows: async (params) => {
-      const { startRow, endRow, filterModel, sortModel } = params.request;
+  // NEW: Fetch invoice data whenever selectedPortal changes
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await axios.post("/api/health/invoice", {
-          startRow,
-          endRow,
-          filterModel,
-          sortModel,
-        });
+        let response;
   
-        params.successCallback(response.data.rows, response.data.lastRow);
+        if (selectedPortal === "All data") {
+          // GET without portal filter
+          response = await axios.get("/api/health/invoice");
+        } else {
+          // POST with portal filter in body
+          response = await axios.post("/api/health/invoice", {
+            portal: selectedPortal,
+          });
+        }
+  
+        setRowData(response.data.data || []);
+        console.log("API Response:", response.data); // ✅ check the shape
       } catch (error) {
-        console.error("Error loading rows:", error);
-        // Remove or optionally replace with:
-        params.successCallback([], 0); // ✅ fallback to no rows
+        console.error("Failed to load row data", error);
+        setRowData([]);
       }
-    },
-  };
+    };
   
-  const onGridReady = useCallback((params) => {
-    gridRef.current.api.setServerSideDatasource(datasource);
-  }, []);
-
-  // Export functions
-  // const exportToCsv = () => {
-  //   gridRef.current.api.exportDataAsCsv();
-  // };
-
-  // const exportToExcel = () => {
-  //   gridRef.current.api.exportDataAsExcel();
-  // };
-
-  const exportToCsv = () => {
-    if (gridRef.current) {
-      gridRef.current.api.exportDataAsCsv();
-    }
-  };
+    fetchData();
+  }, [selectedPortal]);  
   
-  const exportToExcel = () => {
-    if (gridRef.current) {
-      gridRef.current.api.exportDataAsExcel(); // Enterprise only
-    }
+
+  const getRowStyle = (params) => {
+    return params.node.rowIndex % 2 === 0 ? { background: "#f9f9f9" } : null;
   };
-  
 
   return (
-    <div className="report-container" style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      <div style={{ marginBottom: 10 }}>
-        <button onClick={exportToCsv} style={{ marginRight: 10 }}>Export CSV</button>
-        <button onClick={exportToExcel}>Export Excel</button>
-      </div>
+    <div
+      className="report-container"
+      style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      {/* Include HeaderContainer and pass state + handler */}
+      <HeaderContainer
+        selectedPortal={selectedPortal}
+        onPortalChange={onPortalChange}
+      />
+
+      <div style={{ marginBottom: 10 }}>{/* Optionally some filters/buttons here */}</div>
+
       <div className="ag-theme-quartz" style={{ flex: 1 }}>
         <AgGridReact
           ref={gridRef}
           columnDefs={columnDefs}
-          rowModelType="serverSide"
-          pagination={true}
-          paginationPageSize={50}
+          rowData={rowData}
           animateRows={true}
           defaultColDef={{
             flex: 1,
@@ -359,7 +416,25 @@ const InvoiceCheckup = () => {
           rowGroupPanelShow="always"
           enableRangeSelection={true}
           getRowStyle={getRowStyle}
-          onGridReady={onGridReady}
+          sideBar={{
+            toolPanels: [
+              {
+                id: "columns",
+                labelDefault: "Columns",
+                labelKey: "columns",
+                iconKey: "columns",
+                toolPanel: "agColumnsToolPanel",
+              },
+              {
+                id: "filters",
+                labelDefault: "Filters",
+                labelKey: "filters",
+                iconKey: "filter",
+                toolPanel: "agFiltersToolPanel",
+              },
+            ],
+            defaultToolPanel: "", // don't open by default
+          }}
         />
       </div>
     </div>

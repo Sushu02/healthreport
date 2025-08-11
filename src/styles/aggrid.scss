@@ -26,6 +26,16 @@
   width: 100%;
 }
 
+.ag-theme-quartz .ag-paging-panel {
+  display: none !important;
+}
+
+.checkbox-green input[type="checkbox"]:checked {
+  accent-color: green;
+}
+
+
+
 // .ag-theme-quartz grid-wrapper {
 //     --ag-header-background-color: #f4f6f9;
 //     --ag-odd-row-background-color: #fafafa;

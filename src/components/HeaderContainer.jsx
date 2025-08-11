@@ -24,44 +24,64 @@
 
 
 // src/components/HeaderContainer.jsx
-import React from "react";
+// components/Header.js
+import React, { useEffect, useState } from "react";
 
-// import { useLocation } from "react-router-dom";
+const HeaderContainer = ({ selectedPortal, onPortalChange }) => {
+  const [portals, setPortals] = useState([]);
 
-import "../styles/header.scss";
+  useEffect(() => {
+    fetch("/api/portals")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.portals) {
+          setPortals(["All data", ...data.portals]);
 
-const HeaderContainer = ({
-  title,
-  showDownloadButtons,
-  selectedPortal,
-  setSelectedPortal,
-  portalOptions,
-  handleDownloadCSV,
-}) => {
+          // Auto-select "All data" if nothing selected yet
+          if (!selectedPortal) {
+            onPortalChange("All data");
+          }
+        }
+      })
+      .catch((err) => console.error("Failed to fetch portals:", err));
+  }, [onPortalChange, selectedPortal]); // proper dependencies
+
   return (
-    <div className="navbar">
-      <div className="left">
-        <h2>{title}</h2>
-        {showDownloadButtons && (
-          <>
-            <select
-              value={selectedPortal}
-              onChange={(e) => setSelectedPortal(e.target.value)}
-            >
-              {portalOptions.map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-            </select>
-            <button onClick={handleDownloadCSV}>Download CSV</button>
-          </>
+    <header
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "10px 20px",
+        background: "#f5f5f5",
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      <select
+        value={selectedPortal || "All data"}
+        onChange={(e) => onPortalChange(e.target.value)}
+        style={{
+          padding: "5px 10px",
+          fontSize: "14px",
+          borderRadius: "4px",
+          border: "1px solid #ccc",
+        }}
+      >
+        {portals.length > 0 ? (
+          portals.map((portal) => (
+            <option key={portal} value={portal}>
+              {portal}
+            </option>
+          ))
+        ) : (
+          <option disabled>No portals available</option>
         )}
+      </select>
+
+      <div style={{ marginLeft: "auto" }}>
+        {/* Add other header content here */}
       </div>
-      <div className="right">Mmt Admin</div>
-    </div>
+    </header>
   );
 };
-
 
 export default HeaderContainer;
