@@ -258,7 +258,6 @@ const ReportCheckup = () => {
         if (selectedPortal === "All data") {
           // GET without portal filter
           response = await axios.get("/api/health/report");
-          console.log("report data ",response.data)
         } else {
           // POST with portal filter in body
           response = await axios.post("/api/health/report", {
