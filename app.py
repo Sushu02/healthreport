@@ -118,12 +118,13 @@
 
 
 from fastapi import FastAPI
+from routes.weekly_trends import router
 from fastapi.middleware.cors import CORSMiddleware
 from routes.health_report import router as health_report_router
-# from routes.weekly_trends import router as weekly_trends_router  # ✅ Use routes. if it's in routes/
+from routes.weekly_trends import router as weekly_trends_router  # ✅ Use routes. if it's in routes/
 
 app = FastAPI()
-
+app.include_router(router) 
 # Optional: CORS
 app.add_middleware(
     CORSMiddleware,
@@ -136,7 +137,7 @@ app.add_middleware(
 # Include routers
 app.include_router(health_report_router)
 app.include_router(health_report_router, prefix="/api/health", tags=["Health Report"])
-# app.include_router(weekly_trends_router, prefix="/api/trends", tags=["Weekly Trends"])  # ✅ Added prefix
+app.include_router(weekly_trends_router, prefix="/api/trends", tags=["Weekly Trends"])  # ✅ Added prefix
 
 @app.get("/")
 def read_root():

@@ -46,14 +46,17 @@
 
 
 from fastapi import APIRouter
+from pydantic import BaseModel
 from services.mongo_service import get_weekly_summary_data
 
 router = APIRouter()
 
-@router.get("/weekly-trends")
-def get_weekly_trends():
-    try:
-        data = get_weekly_summary_data()
-        return {"message": "Weekly trends data fetched!", "data": data}
-    except Exception as e:
-        return {"error": str(e)}
+class RunTypeRequest(BaseModel):
+    run_type: str | None = None  # default empty
+
+@router.post("/weekly-trends")
+async def weekly_trends(request: RunTypeRequest):
+    data = get_weekly_summary_data(run_type=request.run_type)
+    return {"run_type": request.run_type or "All", "data": data}
+
+
